@@ -1,0 +1,30 @@
+"""
+These Flickr settings should not be edited directly.
+Instead, overwrite them in the main project's setting file.
+"""
+from django.conf import settings
+
+# The Flickr API key.
+# http://www.flickr.com/services/api/keys/
+FLICKR_APIKEY = getattr(settings, 'FLICKR_APIKEY', None)
+
+# The Flickr user ID. You can find your ID here:
+# http://idgettr.com/
+FLICKR_USERID = getattr(settings, 'FLICKR_USERID', None)
+
+# The number of photos to pull. Defaults to 12. Max is 500.
+FLICKR_NUMPHOTOS = getattr(settings, 'FLICKR_NUMPHOTOS', 12)
+
+# The number of seconds for which tweets should be stored in the cache.
+# Defaults to 5 minutes.
+FLICKR_TIMEOUT = getattr(settings, 'FLICKR_TIMEOUT', 300)
+
+# The size of the image that you wish to build the URL for.
+# Defaults to thumbnail. The available options are:
+#       's': small square 75x75
+#       't': thumbnail, 100 on longest side
+#       'm': small, 240 on longest side
+#       '-': medium, 500 on longest side
+#       'z': medium, 640 on longest side
+#       'b': large 1024 on longest side
+FLICKR_IMAGESIZE = getattr(settings, 'FLICKR_IMAGESIZE', 't')

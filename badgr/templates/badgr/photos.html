@@ -1,0 +1,7 @@
+{% if flickr_badge %}
+<ol>
+    {% for photo in flickr_badge %}
+    <li><a title="{{ photo.title }}" href="{{ photo.url }}"><img src="{{ photo.image }}" alt="{{ photo.title }}" /></a></li>
+    {% endfor %}
+<ol>
+{% endif %}
