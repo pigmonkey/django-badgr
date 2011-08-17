@@ -12,25 +12,29 @@ def flickr(request):
 
     flickr_badge = []
 
-    # Register with the API
+    # Register with the API.
     flickr = flickrapi.FlickrAPI(settings.FLICKR_APIKEY)
-    # Get most recent photos for the user
-    pool = flickr.photos_search(user_id=settings.FLICKR_USERID,
-                                per_page=settings.FLICKR_NUMPHOTOS)
 
-    # If the API returned successfully, append each photo to the badge.
-    if pool.get('stat') == 'ok':
-        for photo in pool[0]:
-            # Build the URL for the image and the flickr page.
-            photo.set('image', 'http://farm%s.static.flickr.com/%s/%s_%s_%s.jpg'\
-                                % (photo.get('farm'), photo.get('server'),
-                                   photo.get('id'), photo.get('secret'),
-                                   settings.FLICKR_IMAGESIZE))
-            photo.set('url', 'http://www.flickr.com/photos/%s/%s' %\
-                             (photo.get('owner'), photo.get('id')))
-            flickr_badge.append(photo.attrib)
+    # Attempt to get the most recent photos for the user.
+    try:
+        pool = flickr.photos_search(user_id=settings.FLICKR_USERID,
+                                    per_page=settings.FLICKR_NUMPHOTOS)
+    except:
+        flickr_badge = None
+    else:
+        # If the API returned successfully, append each photo to the badge.
+        if pool.get('stat') == 'ok':
+            for photo in pool[0]:
+                # Build the URL for the image and the flickr page.
+                photo.set('image', 'http://farm%s.static.flickr.com/%s/%s_%s_%s.jpg'\
+                                    % (photo.get('farm'), photo.get('server'),
+                                       photo.get('id'), photo.get('secret'),
+                                       settings.FLICKR_IMAGESIZE))
+                photo.set('url', 'http://www.flickr.com/photos/%s/%s' %\
+                                 (photo.get('owner'), photo.get('id')))
+                flickr_badge.append(photo.attrib)
 
-    # Add the badge to the cache.
-    cache.set('flickr_badge', flickr_badge, settings.FLICKR_TIMEOUT)
+        # Add the badge to the cache.
+        cache.set('flickr_badge', flickr_badge, settings.FLICKR_TIMEOUT)
 
     return {'flickr_badge': flickr_badge}
