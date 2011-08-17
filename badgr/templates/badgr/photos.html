@@ -1,7 +1,7 @@
-{% if flickr_badge %}
 <ol id="flickr-badge">
-    {% for photo in flickr_badge %}
+{% for photo in flickr_badge %}
     <li id="photo-{{ photo.id }}" class="photo"><a title="{{ photo.title }}" href="{{ photo.url }}"><img src="{{ photo.image }}" alt="{{ photo.title }}" /></a></li>
-    {% endfor %}
+{% empty %}
+    <li>Sorry, no photos could be loaded at this time.</li>
+{% endfor %}
 </ol>
-{% endif %}
