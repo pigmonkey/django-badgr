@@ -65,11 +65,14 @@ For how long should the photo pool be stored in the cache. The default is 5 minu
 
 ### `FLICKR_IMAGESIZE`
 
-The size of the image you wish to build the URL for. The default is thumbnail. Available options are:
+The size of the image you wish to build the URL for. The default is medium (500 on the longest side). Available options are:
 
 * 's': small square 75x75
+* 'q': large square 150x150
 * 't': thumbnail, 100 on longest side
 * 'm': small, 240 on longest side
-* '-': medium, 500 on longest side
+* 'n': small, 320 on longest side
+* '' : medium, 500 on the longest side
 * 'z': medium, 640 on longest side
+* 'c': medium, 800 on longest side
 * 'b': large 1024 on longest side

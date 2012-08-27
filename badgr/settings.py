@@ -20,11 +20,14 @@ FLICKR_NUMPHOTOS = getattr(settings, 'FLICKR_NUMPHOTOS', 12)
 FLICKR_TIMEOUT = getattr(settings, 'FLICKR_TIMEOUT', 300)
 
 # The size of the image that you wish to build the URL for.
-# Defaults to thumbnail. The available options are:
+# Defaults to medium (500 on the longest side). The available options are:
 #       's': small square 75x75
+#       'q': large square 150x150
 #       't': thumbnail, 100 on longest side
 #       'm': small, 240 on longest side
-#       '-': medium, 500 on longest side
+#       'n': small, 320 on longest side
+#       '' : medium, 500 on the longest side
 #       'z': medium, 640 on longest side
+#       'c': medium, 800 on longest side
 #       'b': large 1024 on longest side
-FLICKR_IMAGESIZE = getattr(settings, 'FLICKR_IMAGESIZE', 't')
+FLICKR_IMAGESIZE = getattr(settings, 'FLICKR_IMAGESIZE', '')
