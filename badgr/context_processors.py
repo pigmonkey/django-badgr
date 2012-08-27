@@ -25,11 +25,16 @@ def flickr(request):
         # If the API returned successfully, append each photo to the badge.
         if pool.get('stat') == 'ok':
             for photo in pool[0]:
+                # Build the filename for the image.
+                filename = '%s_%s' % (photo.get('id'), photo.get('secret'))
+                if settings.FLICKR_IMAGESIZE:
+                    filename += '_%s' % settings.FLICKR_IMAGESIZE
+                filename += '.jpg' 
                 # Build the URL for the image and the flickr page.
-                photo.set('image', 'http://farm%s.static.flickr.com/%s/%s_%s_%s.jpg'\
-                                    % (photo.get('farm'), photo.get('server'),
-                                       photo.get('id'), photo.get('secret'),
-                                       settings.FLICKR_IMAGESIZE))
+                photo.set('image', ('http://farm%s.static.flickr.com/%s/%s'
+                                    % (photo.get('farm'),
+                                       photo.get('server'),
+                                       filename)))
                 photo.set('url', 'http://www.flickr.com/photos/%s/%s' %\
                                  (photo.get('owner'), photo.get('id')))
                 flickr_badge.append(photo.attrib)
