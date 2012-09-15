@@ -3,6 +3,7 @@ import flickrapi
 from django.core.cache import cache
 from badgr import settings
 
+
 def flickr(request):
     """Return the most recent photos for user."""
     # Check the cache for a badge. If it exists, return it.
@@ -29,13 +30,13 @@ def flickr(request):
                 filename = '%s_%s' % (photo.get('id'), photo.get('secret'))
                 if settings.FLICKR_IMAGESIZE:
                     filename += '_%s' % settings.FLICKR_IMAGESIZE
-                filename += '.jpg' 
+                filename += '.jpg'
                 # Build the URL for the image and the flickr page.
                 photo.set('image', ('http://farm%s.static.flickr.com/%s/%s'
                                     % (photo.get('farm'),
                                        photo.get('server'),
                                        filename)))
-                photo.set('url', 'http://www.flickr.com/photos/%s/%s' %\
+                photo.set('url', 'http://www.flickr.com/photos/%s/%s' %
                                  (photo.get('owner'), photo.get('id')))
                 flickr_badge.append(photo.attrib)
 
