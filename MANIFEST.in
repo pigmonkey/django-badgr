@@ -1,0 +1,4 @@
+recursive-include badgr/templates *.html
+
+include LICENSE
+include README.md
