@@ -15,16 +15,24 @@ Requirements
 Installation
 ------------
 
-1. Put the `badgr` directory somewhere inside your Python path (like in your Django project folder).
-2. Add `badgr.context_processors.flickr` to your `settings.TEMPLATE_CONTEXT_PROCESSORS`.
+django-badgr is available on PyPI and can be installed with PIP.
 
-   A good way to do this with overriding all of Django's default context processors is to first import the variable from the global settings and then append to it:
+    pip install django-badgr
 
-        from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
+Alternatively, you may download the source and install it.
 
-        TEMPLATE_CONTEXT_PROCESSORS += (
-            'badgr.context_processors.flickr',
-        )
+    python setup.py install
+
+
+Setup
+-----
+
+Add `badgr.context_processors.flickr` to your `settings.TEMPLATE_CONTEXT_PROCESSORS`.
+
+    from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
+    TEMPLATE_CONTEXT_PROCESSORS += (
+        'badgr.context_processors.flickr',
+    )
 
 
 ### Optional
