@@ -3,6 +3,7 @@ These Flickr settings should not be edited directly.
 Instead, overwrite them in the main project's setting file.
 """
 from django.conf import settings
+from django.core.cache import cache
 
 # The Flickr API key.
 # http://www.flickr.com/services/api/keys/
@@ -16,8 +17,8 @@ FLICKR_USERID = getattr(settings, 'FLICKR_USERID', None)
 FLICKR_NUMPHOTOS = getattr(settings, 'FLICKR_NUMPHOTOS', 12)
 
 # The number of seconds for which tweets should be stored in the cache.
-# Defaults to 5 minutes.
-FLICKR_TIMEOUT = getattr(settings, 'FLICKR_TIMEOUT', 300)
+# Defaults to the Django cache timeout, which defaults to 300 seconds.
+FLICKR_TIMEOUT = getattr(settings, 'FLICKR_TIMEOUT', cache.default_timeout)
 
 # The size of the image that you wish to build the URL for.
 # Defaults to medium (500 on the longest side). The available options are:

@@ -61,7 +61,7 @@ The number of photos to pull. This defaults to 12. Flickr's maximum is 500.
 
 ### `FLICKR_TIMEOUT`
 
-For how long should the photo pool be stored in the cache. The default is 5 minutes. Flickr requests that an application not make more than 3600 requests per API key per hour.
+For how long should the photo pool be stored in the cache. This defaults to the [Django cache timeout](https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-CACHES-TIMEOUT), which defaults to 300 seconds (5 minutes). Flickr requests that an application not make more than 3600 requests per API key per hour.
 
 ### `FLICKR_IMAGESIZE`
 
